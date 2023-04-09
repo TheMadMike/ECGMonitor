@@ -57,9 +57,21 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_GREEN_Pin GPIO_PIN_13
+#define LED_GREEN_GPIO_Port GPIOB
+#define LED_RED_Pin GPIO_PIN_14
+#define LED_RED_GPIO_Port GPIOB
+#define LED_BLUE_Pin GPIO_PIN_15
+#define LED_BLUE_GPIO_Port GPIOB
+#define LOD_N_Pin GPIO_PIN_5
+#define LOD_N_GPIO_Port GPIOB
+#define LOD_N_EXTI_IRQn EXTI9_5_IRQn
+#define LOD_P_Pin GPIO_PIN_6
+#define LOD_P_GPIO_Port GPIOB
+#define LOD_P_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
-
+void cpp_main();
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
