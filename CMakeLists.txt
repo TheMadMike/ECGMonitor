@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Configure the project
-project(ECGMonitor C ASM)
+project(ECGMonitor C CXX ASM)
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Specify the cross compiler
 set(CMAKE_SYSTEM_NAME Generic)
@@ -26,7 +26,7 @@ add_definitions(-DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING)
 #Uncomment for software floating point
 #set(FPU_FLAGS "-mfloat-abi=soft")
 
-set(COMMON_FLAGS "-mcpu=cortex-m4 ${FPU_FLAGS} -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0  --specs=nano.specs")
+set(COMMON_FLAGS "-mcpu=cortex-m4 ${FPU_FLAGS} -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs")
 
 set(CMAKE_C_FLAGS "${COMMON_FLAGS}")
 set(CMAKE_CXX_FLAGS "${COMMON_FLAGS}")
@@ -35,16 +35,8 @@ set(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections -T ${LINKER_SCRIPT}")
 add_definitions(-D__weak=__attribute__\(\(weak\)\) -D__packed=__attribute__\(\(__packed__\)\) -DUSE_HAL_DRIVER -DSTM32F411xE)
 
 file(GLOB_RECURSE SOURCES "startup_stm32f411xe.s" 
-Src/main.c
-Src/gpio.c
-Src/adc.c
-Src/dma.c
-Src/usart.c
-Src/stm32f4xx_it.c
-Src/stm32f4xx_hal_msp.c
-Src/system_stm32f4xx.c
-Src/serial/print.c
-Src/adc_buffer.c
+Src/*.c
+Src/cpp/*.cc
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_adc.c

@@ -3,3 +3,5 @@ build
 *.ld
 *.s
 tools
+.cache
+compile_commands.json

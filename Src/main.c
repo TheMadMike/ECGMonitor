@@ -91,14 +91,15 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_BUF_LEN);
+  cpp_main();
   /* USER CODE END 2 */
-  
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    serial_printf("%d\r\n", adcbuf_get_next_blocking());
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
