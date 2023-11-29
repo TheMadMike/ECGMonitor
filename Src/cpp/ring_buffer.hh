@@ -3,11 +3,11 @@
 #include <stdint.h>
 
 template<typename data_t, uint32_t size>
-class sample_buffer
+class ring_buffer
 {
 public:
-    explicit sample_buffer(volatile data_t* buffer, volatile uint32_t* read_pos, volatile uint32_t* write_pos);
-    virtual ~sample_buffer() = default;
+    explicit ring_buffer(volatile data_t* buffer, volatile uint32_t* read_pos, volatile uint32_t* write_pos);
+    virtual ~ring_buffer() = default;
 
     data_t read() const;
 
