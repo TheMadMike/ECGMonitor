@@ -9,14 +9,16 @@ ring_buffer<data_t, size>::ring_buffer(volatile data_t* buffer, volatile uint32_
 
 
 template<typename data_t, uint32_t size>
-data_t ring_buffer<data_t, size>::read() const 
+data_t ring_buffer<data_t, size>::read()
 {  
     if(*read_pos == *write_pos)
         return 0;
 
+    buffer[*read_pos] = fir_convolve(this->fir, fir_start);
+    fir_start = (fir_start + 1) % fir->buf_len;
+
     return buffer[*read_pos];
 }
-
 
 template<typename data_t, uint32_t size>
 void ring_buffer<data_t, size>::next()

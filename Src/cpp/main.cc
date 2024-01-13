@@ -2,6 +2,8 @@ extern "C" {
     #include "adc_buffer.h"
     #include "serial/print.h"
     #include "usart.h"
+    #include "fir.h"
+    #include "fir_coeffs.h"
 };
 
 #include "ring_buffer.hh"
@@ -24,6 +26,15 @@ extern "C" void cpp_main()
         );
 
     uint8_t uart_buffer[2] = { 0x00, 0x00 };
+
+    struct fir_t fir0 = {
+        .coeffs = fir0_coeffs,
+        .coeffs_len = (sizeof(fir0_coeffs) / sizeof(fp32_t)),
+        .buf = adc_buffer,
+        .buf_len = ADC_BUF_LEN
+    };  
+
+    buffer.set_fir(&fir0);
 
     while(1) 
     {
