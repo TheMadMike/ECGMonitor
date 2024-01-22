@@ -206,7 +206,8 @@ void SysTick_Handler(void)
 void EXTI9_5_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI9_5_IRQn 0 */
-  if( (HAL_GPIO_ReadPin(LOD_N_GPIO_Port, LOD_N_Pin) == 0) && (HAL_GPIO_ReadPin(LOD_N_GPIO_Port, LOD_N_Pin) == 0) )
+  if( (HAL_GPIO_ReadPin(LOD_N_GPIO_Port, LOD_N_Pin) == 0) && 
+      (HAL_GPIO_ReadPin(LOD_P_GPIO_Port, LOD_P_Pin) == 0) )
   {
     __disable_irq();
     HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
